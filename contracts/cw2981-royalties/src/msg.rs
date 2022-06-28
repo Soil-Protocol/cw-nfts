@@ -75,6 +75,8 @@ pub enum Cw2981QueryMsg {
         start_after: Option<String>,
         limit: Option<u32>,
     },
+    // Return the minter
+    Minter {},
 }
 
 impl From<Cw2981QueryMsg> for CW721QueryMsg {
@@ -119,7 +121,8 @@ impl From<Cw2981QueryMsg> for CW721QueryMsg {
             },
             Cw2981QueryMsg::AllTokens { start_after, limit } => {
                 CW721QueryMsg::AllTokens { start_after, limit }
-            }
+            },
+            Cw2981QueryMsg::Minter {} => CW721QueryMsg::Minter {},
             _ => panic!("cannot covert {:?} to CW721QueryMsg", msg),
         }
     }
